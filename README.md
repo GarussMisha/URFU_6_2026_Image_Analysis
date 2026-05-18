@@ -20,7 +20,7 @@
 ### 1. Клонирование репозитория
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/GarussMisha/URFU_6_2026_Image_Analysis.git
 cd IPCAM
 ```
 
