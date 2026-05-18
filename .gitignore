@@ -1,0 +1,22 @@
+# Виртуальное окружение
+venv/
+env/
+
+# Конфиденциальные файлы
+.env
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Снимки движения
+motion_snapshots/
+
+# Логи
+*.log
+
+# Markdown (исключаем README)
+*.md
+!README.md
