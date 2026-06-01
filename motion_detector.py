@@ -102,7 +102,7 @@ class AsyncSnapshotSaver:
 
 
 class MotionDetector:
-    """Класс для детекции движения на видеоходе и сохранения снимков."""
+    """Класс для детекции движения на видеокамере и сохранения снимков."""
     def __init__(self):
         self.prev_frame = None                    # Предыдущий кадр (для сравнения)
         self.motion_frames = 0                    # Счётчик кадров с движением
@@ -168,10 +168,11 @@ class MotionDetector:
         frame_count = 0
         consecutive_failures = 0
         max_consecutive_failures = 5
-        
+
         while True:
             ret, frame = cap.read()
             if not ret:
+                # При ошибке чтения кадра попытка переподключиться
                 consecutive_failures += 1
                 print(f"⚠️ Ошибка чтения кадра ({consecutive_failures}/{max_consecutive_failures})")
                 
@@ -238,7 +239,7 @@ class MotionDetector:
             if self.motion_frames >= self.min_motion_frames:
                 self.snapshot_counter += 1
                 
-                # АСИНХРОННО добавляем в очередь на сохранение
+                # Добавляем в очередь на сохранение
                 self.saver.save_frame(frame)
                 print(f"🔴 ДВИЖЕНИЕ! Отправлено на сохранение")
                 
